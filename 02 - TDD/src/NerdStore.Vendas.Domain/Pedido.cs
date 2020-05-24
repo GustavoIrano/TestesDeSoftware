@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace NerdStore.Vendas.Domain
 {
-    public partial class Pedido
+    public partial class Pedido : Entity, IAggregateRoot
     {
 
         public static int MAX_UNIDADES_ITEM => 15;
@@ -108,7 +108,7 @@ namespace NerdStore.Vendas.Domain
             CalcularValorPedido();
         }
 
-        private bool PedidoItemExistente(PedidoItem pedidoItem)
+        public bool PedidoItemExistente(PedidoItem pedidoItem)
         {
             return _pedidoItems.Any(p => p.ProdutoId == pedidoItem.ProdutoId);
         }
